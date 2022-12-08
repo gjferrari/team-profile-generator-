@@ -1,5 +1,4 @@
 const Manager = require("../lib/Manager");
-const Engineer = require("../lib/Manager");
 
 describe("Manager", () => {
   it("should create an employee object with office number", () => {
