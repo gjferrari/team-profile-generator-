@@ -1,16 +1,17 @@
 //this will generate the template for html
-`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-`
+
+inquirer.prompt()
+
+const createManager = (manager) => {
+  //return is implied in arrow functions
+  `<div class="card employee-info">
+    <div class="card-header bg-primary text-white
+        <h2 class="card-title>${manager.name}</h2>`;
+};
+
+const createIntern = (intern) => {
+  //return is implied in arrow functions
+  `<div class="card employee-info">
+    <div class="card-header bg-primary text-white
+        <h2 class="card-title>${intern.name}</h2>`;
+};
