@@ -7,6 +7,7 @@ const fs = require("fs");
 
 //generates html from answers
 const generateHTML = require("src/generateHTML.js");
+const Employee = require("./lib/Employee");
 
 function createManager() {
   inquirer
@@ -63,50 +64,87 @@ function createTeam() {
     ===============================
     ~* CREATING EMPLOYEE ROSTER *~
     ===============================`);
-  inquirer.prompt([
-    {
-      type: "list",
-      name: "employeeType",
-      message: "Choose an employee role",
-      choice: ["engineer", "intern"],
-    },
-    {
-      type: "input",
-      name: "employeeName",
-      message: "What is the employee's name?",
-    },
-    {
-      type: "input",
-      name: "employeeID",
-      message: "What is the employees's ID?",
-    },
-    {
-      type: "input",
-      name: "employeeEmail",
-      message: "What is the employee's email?",
-      validate: (email = () => {
-        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        name: "employeeType",
+        message: "Choose an employee role",
+        choice: ["engineer", "intern"],
+      },
+      {
+        type: "input",
+        name: "employeeName",
+        message: "What is the employee's name?",
+      },
+      {
+        type: "input",
+        name: "employeeID",
+        message: "What is the employees's ID?",
+      },
+      {
+        type: "input",
+        name: "employeeEmail",
+        message: "What is the employee's email?",
+        validate: (email = () => {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
 
-        if (valid) {
-          return true;
-        } else {
-          console.log("Please enter a valid email");
-          return false;
-        }
-      }),
-    },
+          if (valid) {
+            return true;
+          } else {
+            console.log("Please enter a valid email");
+            return false;
+          }
+        }),
+      },
 
-    {
-      type: "input",
-      name: "gitHub",
-      message: "What is the engineer's github?",
-      when: (list = () => list.employeeType === "engineer"),
-    },
-    {
-      type: "input",
-      name: "school",
-      message: "What is the intern's unversity/school?",
-      when: (list = () => list.employeeType === "intern"),
-    },
-  ]);
+      {
+        type: "input",
+        name: "gitHub",
+        message: "What is the engineer's github?",
+        when: (list = () => list.employeeType === "engineer"),
+      },
+      {
+        type: "input",
+        name: "school",
+        message: "What is the intern's unversity/school?",
+        when: (list = () => list.employeeType === "intern"),
+      },
+
+      {
+        type: "confirm",
+        name: "addEmployee",
+        message: "Would you like to add another employee?",
+      },
+    ])
+
+    .then((answers) => {
+      const employee = new Employee(
+        answers.employeeName,
+        answers.employeeType,
+        answers.employeeID,
+        answers.employeeEmail,
+        answers.gitHub,
+        answers.school
+      );
+
+      if (answers.employeeType === "engineer") {
+        employee = new Engineer(
+          answers.employeeName,
+          answers.employeeEmail,
+          answers.employeeID,
+          answers.gitHub
+        );
+      } else if (answers.employeeType === "intern") {
+        employee = new Intern(
+          answers.employeeName,
+          answers.employeeEmail,
+          answers.employeeID,
+          answers.school
+        );
+      }
+    });
+  teamMembers.push(employee);
+
+  //   idArray.push(answers.managerID);
 }
