@@ -7,24 +7,28 @@ const fs = require("fs");
 
 //generates html from answers
 const generateHTML = require("src/generateHTML.js");
-const Employee = require("./lib/Employee");
+// const Employee = require("./lib/Employee");
+
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 
 function createManager() {
   inquirer
     .prompt([
       {
         type: "input",
-        name: "managerName",
+        name: "name",
         message: "What is the manager's name?",
       },
       {
         type: "input",
-        name: "managerID",
+        name: "id",
         message: "What is the manager's ID?",
       },
       {
         type: "input",
-        name: "managerEmail",
+        name: "email",
         message: "What is the manager's email?",
         validate: (email = () => {
           valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
@@ -41,20 +45,20 @@ function createManager() {
       // https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
       {
         type: "input",
-        name: "managerOfficeNum",
+        name: "officeNumber",
         message: "What is the manager's office number",
       },
     ])
     .then((answers) => {
       const manager = new Manager(
-        answers.manangerName,
-        answers.managerID,
-        answers.managerEmail,
-        answers.managerOfficeNum
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
       );
       teamMembers.push(manager);
 
-      idArray.push(answers.managerID);
+      idArray.push(answers.id);
 
       createTeam();
     });
@@ -68,23 +72,23 @@ function createTeam() {
     .prompt([
       {
         type: "list",
-        name: "employeeType",
+        name: "role",
         message: "Choose an employee role",
         choice: ["engineer", "intern"],
       },
       {
         type: "input",
-        name: "employeeName",
+        name: "name",
         message: "What is the employee's name?",
       },
       {
         type: "input",
-        name: "employeeID",
+        name: "id",
         message: "What is the employees's ID?",
       },
       {
         type: "input",
-        name: "employeeEmail",
+        name: "email",
         message: "What is the employee's email?",
         validate: (email = () => {
           valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
@@ -119,27 +123,27 @@ function createTeam() {
     ])
 
     .then((answers) => {
-      const employee = new Employee(
-        answers.employeeName,
-        answers.employeeType,
-        answers.employeeID,
-        answers.employeeEmail,
-        answers.gitHub,
-        answers.school
-      );
+      // const employee = new Employee(
+      //   answers.employeeName,
+      //   answers.employeeType,
+      //   answers.employeeID,
+      //   answers.employeeEmail,
+      //   answers.gitHub,
+      //   answers.school
+      // );
 
-      if (answers.employeeType === "engineer") {
-        employee = new Engineer(
-          answers.employeeName,
-          answers.employeeEmail,
-          answers.employeeID,
+      if (answers.role === "engineer") {
+        const engineer = new Engineer(
+          answers.name,
+          answers.email,
+          answers.id,
           answers.gitHub
         );
-      } else if (answers.employeeType === "intern") {
-        employee = new Intern(
-          answers.employeeName,
-          answers.employeeEmail,
-          answers.employeeID,
+      } else if (answers.role === "intern") {
+        const intern = new Intern(
+          answers.name,
+          answers.email,
+          answers.id,
           answers.school
         );
       }
