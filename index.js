@@ -25,7 +25,19 @@ function createManager() {
         type: "input",
         name: "managerEmail",
         message: "What is the manager's email?",
+        validate: (email = () => {
+          valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+          if (valid) {
+            return true;
+          } else {
+            console.log("Please enter a valid email");
+            return false;
+          }
+        }),
       },
+      // learn email validation from website below - tailored code to fit needs
+      // https://gist.github.com/Amitabh-K/ae073eea3d5207efaddffde19b1618e8
       {
         type: "input",
         name: "managerOfficeNum",
@@ -55,8 +67,8 @@ function createTeam() {
     {
       type: "checklist",
       name: "employeeType",
-      message: "Choose an employee role?",
-      choice: ["employee", "intern"],
+      message: "Choose an employee role",
+      choice: ["engineer", "intern"],
     },
     {
       type: "input",
@@ -65,18 +77,30 @@ function createTeam() {
     },
     {
       type: "input",
-      name: "managerID",
+      name: "employeeID",
       message: "What is the employees's ID?",
     },
     {
       type: "input",
-      name: "managerEmail",
+      name: "employeeEmail",
       message: "What is the employee's email?",
+      validate: (email = () => {
+        valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+
+        if (valid) {
+          return true;
+        } else {
+          console.log("Please enter a valid email");
+          return false;
+        }
+      }),
     },
+
     {
       type: "input",
-      name: "managerOfficeNum",
-      message: "What is the manager's office number",
+      name: "gitHub",
+      message: "What is the engineer's github?",
+      when: (answers = () => answers.employeeType === "engineer"),
     },
   ]);
 }
