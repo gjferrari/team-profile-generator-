@@ -65,7 +65,7 @@ function createTeam() {
     ===============================`);
   inquirer.prompt([
     {
-      type: "checklist",
+      type: "list",
       name: "employeeType",
       message: "Choose an employee role",
       choice: ["engineer", "intern"],
@@ -100,7 +100,13 @@ function createTeam() {
       type: "input",
       name: "gitHub",
       message: "What is the engineer's github?",
-      when: (answers = () => answers.employeeType === "engineer"),
+      when: (list = () => list.employeeType === "engineer"),
+    },
+    {
+      type: "input",
+      name: "school",
+      message: "What is the intern's unversity/school?",
+      when: (list = () => list.employeeType === "intern"),
     },
   ]);
 }
