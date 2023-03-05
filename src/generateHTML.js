@@ -60,33 +60,36 @@ const createIntern = (intern) => {
 </div>`;
 };
 
-roleArray = [];
+const setRoles = () => {
+  roleArray = [];
 
-for (let i = 0; i < data.length; i++) {
-  const employee = data[i];
-  const role = employee.getRole();
+  for (let i = 0; i < data.length; i++) {
+    const employee = data[i];
+    const role = employee.getRole();
 
-  // Call Team Manager function
-  if (role === "Manager") {
-    const managerCard = createManager(employee);
+    // Call Team Manager function
+    if (role === "Manager") {
+      const managerCard = createManager(employee);
 
-    roleArray.push(managerCard);
+      roleArray.push(managerCard);
+    }
+
+    // Call Engineer function
+    if (role === "Engineer") {
+      const engineerCard = createManager(employee);
+
+      roleArray.push(engineerCard);
+    }
+
+    //  Call Intern function
+    if (role === "Intern") {
+      const internCard = generateIntern(employee);
+
+      roleArray.push(internCard);
+    }
   }
+};
 
-  // Call Engineer function
-  if (role === "Engineer") {
-    const engineerCard = createManager(employee);
-
-    roleArray.push(engineerCard);
-  }
-
-  //  Call Intern function
-  if (role === "Intern") {
-    const internCard = generateIntern(employee);
-
-    roleArray.push(internCard);
-  }
-}
 const createTeamHtml = () => {
   `<html lang="en">
 <head>
