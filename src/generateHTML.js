@@ -60,7 +60,7 @@ const createIntern = (intern) => {
 </div>`;
 };
 
-const setRoles = (data) => {
+function setRoles(data) {
   roleArray = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -76,14 +76,14 @@ const setRoles = (data) => {
 
     // Call Engineer function
     if (role === "Engineer") {
-      const engineerCard = createManager(employee);
+      const engineerCard = createEngineer(employee);
 
       roleArray.push(engineerCard);
     }
 
     //  Call Intern function
     if (role === "Intern") {
-      const internCard = generateIntern(employee);
+      const internCard = createIntern(employee);
 
       roleArray.push(internCard);
     }
@@ -92,7 +92,7 @@ const setRoles = (data) => {
 
   const generateTeam = createTeamHtml(employeeCards);
   return generateTeam;
-};
+}
 
 const createTeamHtml = () => {
   `<html lang="en">
@@ -143,4 +143,4 @@ const createTeamHtml = () => {
 };
 //this will generate the template for html
 
-export default setRoles;
+export default generateHTML;
