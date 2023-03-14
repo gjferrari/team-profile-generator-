@@ -60,7 +60,7 @@ const createIntern = (intern) => {
 </div>`;
 };
 
-const setRoles = () => {
+const setRoles = (data) => {
   roleArray = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -88,6 +88,10 @@ const setRoles = () => {
       roleArray.push(internCard);
     }
   }
+  const employeeCards = roleArray.join("");
+
+  const generateTeam = createTeamHtml(employeeCards);
+  return generateTeam;
 };
 
 const createTeamHtml = () => {
@@ -138,3 +142,5 @@ const createTeamHtml = () => {
 `;
 };
 //this will generate the template for html
+
+export default setRoles;

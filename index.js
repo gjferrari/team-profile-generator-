@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 //generates html from answers
-// const generateHTML = require("src/generateHTML.js");
+const generateHTML = require("./src/generateHTML").default;
 // const Employee = require("./lib/Employee");
 
 const teamMembers = [];
@@ -375,4 +375,23 @@ async function runAllOfIt() {
 
 runAllOfIt();
 
+const writeFile = (data) => {
+  fs.writeFile("./dist/index.html", data, (err) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("You've sucessfull generated a team page!");
+    }
+  });
+};
 
+runAllOfIt((teamMembers) => {
+  return generateHTML(teamMembers);
+})
+  .then((pageHTML) => {
+    return writeFile(pageHTML);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
