@@ -1,8 +1,7 @@
 const employeeChoices = [];
 
 const createManager = (manager) => {
-  //return is implied in arrow functions
-  `<div class="col-4 mt-4">
+  return `<div class="col-4 mt-4">
 <div class="card h-100">
   <div class="card-header bg-primary text-white">
     <h3>${manager.name}</h3>
@@ -21,8 +20,7 @@ const createManager = (manager) => {
 };
 
 const createEngineer = (engineer) => {
-  //return is implied in arrow functions
-  `<div class="col-4 mt-4">
+  return `<div class="col-4 mt-4">
 <div class="card h-100">
   <div class="card-header bg-primary text-white">
     <h3>${engineer.name}</h3>
@@ -41,8 +39,7 @@ const createEngineer = (engineer) => {
 };
 
 const createIntern = (intern) => {
-  //return is implied in arrow functions
-  `<div class="col-4 mt-4">
+  return `<div class="col-4 mt-4">
 <div class="card h-100">
   <div class="card-header bg-primary text-white">
     <h3>${intern.name}</h3>
@@ -60,7 +57,7 @@ const createIntern = (intern) => {
 </div>`;
 };
 
-function setRoles(data) {
+function generateHTML(data) {
   roleArray = [];
 
   for (let i = 0; i < data.length; i++) {
@@ -95,7 +92,7 @@ function setRoles(data) {
 }
 
 const createTeamHtml = () => {
-  `<html lang="en">
+  return `<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

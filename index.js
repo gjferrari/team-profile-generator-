@@ -371,28 +371,30 @@ async function runAllOfIt() {
       break;
     }
   }
+  console.log(teamMembers);
+  writeFile();
 }
 
 runAllOfIt();
 
-// console.log(answers);
-// const writeFile = (data) => {
-//   fs.writeFile("./dist/index.html", data, (err) => {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     } else {
-//       console.log("You've sucessfull generated a team page!");
-//     }
-//   });
-// };
+console.log(answers);
+const writeFile = (data) => {
+  fs.writeFile("./dist/index.html", data, (err) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("You've sucessfull generated a team page!");
+    }
+  });
+};
 
-// runAllOfIt((teamMembers) => {
-//   return generateHTML(teamMembers);
-// })
-//   .then((pageHTML) => {
-//     return writeFile(pageHTML);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+runAllOfIt((teamMembers) => {
+  return generateHTML(teamMembers);
+})
+  .then((pageHTML) => {
+    return writeFile(pageHTML);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
