@@ -369,6 +369,7 @@ async function runAllOfIt() {
       //stop the while loop
       //https://www.w3schools.com/jsref/jsref_break.asp
       break;
+      ///attempted to add code here but it ruins the functionality
     }
   }
   console.log(teamMembers);
