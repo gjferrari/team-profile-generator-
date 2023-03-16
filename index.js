@@ -372,29 +372,30 @@ async function runAllOfIt() {
     }
   }
   console.log(teamMembers);
-  writeFile();
+  // writeFile();
+  // createFile();
 }
 
 runAllOfIt();
 
-console.log(answers);
-const writeFile = (data) => {
-  fs.writeFile("./dist/index.html", data, (err) => {
-    if (err) {
-      console.log(err);
-      return;
-    } else {
-      console.log("You've sucessfull generated a team page!");
-    }
-  });
-};
+// console.log(answers);
+// const writeFile = (data) => {
+//   fs.writeFile("./dist/index.html", data, (err) => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     } else {
+//       console.log("You've sucessfull generated a team page!");
+//     }
+//   });
+// };
 
-runAllOfIt((teamMembers) => {
-  return generateHTML(teamMembers);
-})
-  .then((pageHTML) => {
-    return writeFile(pageHTML);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// const createFile = ((teamMembers) => {
+//   return generateHTML(teamMembers);
+// })
+//   .then((pageHTML) => {
+//     return writeFile(pageHTML);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
