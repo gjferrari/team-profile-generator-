@@ -4,7 +4,7 @@
 
 ## Description
 
-This command-line application takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. NOTE FOR GRADER: this code is not finished
+This command-line application takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. 
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@ This command-line application takes in information about employees on a software
 
 ## Installation
 
-First clone the repository (git clone: git@github.com:gjferrari/team-profile-generator-.git), then ensure node is installed on your device by running 'node -v' in the command terminal. Install all dependencies using 'npm i' in the command terminal, and run the code using 'node index.js.'
+First clone the repository (git clone: git@github.com:gjferrari/team-profile-generator-.git), then ensure node is installed on your device by running 'node -v' in the command terminal. Install all dependencies using 'npm i' in the command terminal, and run the code using 'node index.js.' 
 
 ## Usage
 
@@ -33,7 +33,7 @@ None
 
 ## Tests
 
-For a video walk-through of the application, please visit: (WILL PROVIDE VIDEO ONCE HOMEWORK IS FINISHED)
+For a video walk-through of the application, please visit: https://drive.google.com/file/d/13Z6y1GP8SRG93O1UKnz7wwn2YWRxg5Ou/view
 
 ## Questions
 
