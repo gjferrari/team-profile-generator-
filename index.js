@@ -6,7 +6,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 
 //generates html from answers
-// const generateHTML = require("./src/generateHTML").default;
+const generateHTML = require("./src/generateHTML");
 // const Employee = require("./lib/Employee");
 
 const teamMembers = [];
@@ -276,6 +276,9 @@ async function createManager() {
       teamMembers.push(manager);
 
       // createTeamMember();
+    })
+    .catch((err) => {
+      console.log(err, "error");
     }); // Return a Promise
 }
 async function createTeamMember() {
@@ -366,6 +369,8 @@ async function runAllOfIt() {
     if (addAnotherEmployee === true) {
       //then restart prompt and ask follow questions about new employee
     } else {
+      const newFile = createFile();
+      writeFile(newFile);
       //stop the while loop
       //https://www.w3schools.com/jsref/jsref_break.asp
       break;
@@ -373,30 +378,28 @@ async function runAllOfIt() {
     }
   }
   console.log(teamMembers);
-  // writeFile();
-  // createFile();
 }
 
 runAllOfIt();
 
 // console.log(answers);
-// const writeFile = (data) => {
-//   fs.writeFile("./dist/index.html", data, (err) => {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     } else {
-//       console.log("You've sucessfull generated a team page!");
-//     }
-//   });
-// };
+const writeFile = (data) => {
+  fs.writeFile("./dist/index.html", data, (err) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("You've sucessfull generated a team page!");
+    }
+  });
+};
 
-// const createFile = ((teamMembers) => {
-//   return generateHTML(teamMembers);
+const createFile = () => {
+  return generateHTML(teamMembers);
+};
+// .then((pageHTML) => {
+//   return writeFile(pageHTML);
 // })
-//   .then((pageHTML) => {
-//     return writeFile(pageHTML);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+// .catch((err) => {
+//   console.log(err);
+// });

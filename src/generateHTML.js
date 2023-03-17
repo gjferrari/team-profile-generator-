@@ -91,7 +91,7 @@ function generateHTML(data) {
   return generateTeam;
 }
 
-const createTeamHtml = () => {
+const createTeamHtml = (employeeCards) => {
   return `<html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -140,4 +140,4 @@ const createTeamHtml = () => {
 };
 //this will generate the template for html
 
-export default generateHTML;
+module.exports = generateHTML;
